@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Miaged',
       theme: ThemeData(
         primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.red,
+        scaffoldBackgroundColor: Colors.blue,
       ),
       home:  WelcomeScreen(),
     );
