@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+# How to run it
+
+Run by using the command "flutter run --no-sound-null-safety" in the "MiagedFlutter" repository
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
