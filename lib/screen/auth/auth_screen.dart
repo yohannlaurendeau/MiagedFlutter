@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miagedflutter/common/loading.dart';
+import 'package:miagedflutter/services/auth.dart';
+
 
 class AuthScreen extends StatefulWidget {
 
@@ -8,6 +10,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class AuthScreenState extends State<AuthScreen> {
+  final AuthService _auth = AuthService();
 
   final _formKey = GlobalKey<FormState>(); // Cle obligatoire pour identifier le formulaire et valider les champs
   String textErr ='';
@@ -51,7 +54,7 @@ class AuthScreenState extends State<AuthScreen> {
                 Icons.person,
                 color: Colors.white,
               ),
-              label: Text(showSignIn ? 'Connexion' : 'Inscription',
+              label: Text(showSignIn ? 'Inscription' : 'Connexion',
                 style: TextStyle(color: Colors.white)),
               onPressed: ()=>toggleView(),
           )
@@ -87,20 +90,21 @@ class AuthScreenState extends State<AuthScreen> {
               SizedBox(height: 10.0),
               ElevatedButton(
                 child: Text(
-                  showSignIn ? "Connexion" : "Inscription",
+                  showSignIn ? "Se Connecter" : "Inscrivez vous",
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
-                onPressed: (){
+                onPressed: () async{
                   if(_formKey.currentState?.validate() == true){
                     setState(() => loading = true);
                     var password = passwordController.value.text;
                     var email = emailController.value.text;
 
-                    //TODO CALL FIREBASE
-
-                    dynamic result = null;
+                    //dynamic result = null;
+                    dynamic result = showSignIn
+                        ? await _auth.Connexion(email, password)
+                        : await _auth.Inscription(email, password) ;
                     if(result == null){
                       setState((){
                         loading = false;
