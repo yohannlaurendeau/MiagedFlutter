@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:miagedflutter/screen/profil.dart';
+import 'package:miagedflutter/screen/acheter.dart';
+import 'package:miagedflutter/screen/panier.dart';
+
+import 'package:miagedflutter/screen/profiletest.dart';
 import 'package:miagedflutter/services/auth.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,38 +15,71 @@ class HomeScreen extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent,
-        title: Text('MIAGED'),
-        actions: <Widget>[
-          TextButton.icon(
-            icon: Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
-            label: Text('Déconnexion'),
-            onPressed: () async {
-              await _auth.Deconnexion();
-            }
-          )
-        ],
-      ),
+
 
       body:
-        const Center(
 
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-            onPressed: ()=>_navigateToNextScreen(context),
-            label: const Text('Profil'),
-            icon: const Icon(Icons.person),
-            backgroundColor: Colors.red,
-          ),
+           MaterialApp(
+             home: MyBottomNavigationBar(),
+             debugShowCheckedModeBanner: false,
+
+      ),
+
 
     );
   }
 }
 
-void _navigateToNextScreen(BuildContext context) {
-  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilScreen()));
+
+
+class MyBottomNavigationBar extends StatefulWidget {
+  const MyBottomNavigationBar({Key? key}) : super(key: key);
+
+  @override
+  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
 }
+
+class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+
+  int _currentIndex = 0;
+  final List<Widget> _children =[
+    AcheterScreen(),
+    PanierScreen(),
+    ProfilTestScreen(),
+
+  ];
+
+  void _onTappedBar(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+
+        items:[
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text("Acheter")
+          ),
+          BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text("Panier")
+          ),
+          BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text("Profil")
+          ),
+        ],
+        onTap: _onTappedBar,
+        currentIndex: _currentIndex,
+      ),
+
+    );
+  }
+}
+
