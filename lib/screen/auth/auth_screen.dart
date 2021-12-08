@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:miagedflutter/common/loading.dart';
 import 'package:miagedflutter/services/auth.dart';
@@ -112,6 +114,7 @@ class AuthScreenState extends State<AuthScreen> {
                       });
 
                     }
+
                   }
                 },
               ),

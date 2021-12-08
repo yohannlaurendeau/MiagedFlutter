@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:miagedflutter/user.dart';
 
@@ -34,7 +35,20 @@ class AuthService {
       User user = result.user;
 
 
-      //TODO FIRESTORE
+      FirebaseFirestore.instance.collection('guestbook').add({
+        'text': "C EST UN TEST DEPUIS INSCRIPTION",
+        'email': email,
+        'password': password,
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+        'userId': FirebaseAuth.instance.currentUser!.uid,
+        'anniversaire':'',
+        'addresse':'',
+        'codepostal':'',
+        'ville':'',
+
+      });
+      print("hello c est auth ici");
+      print(FirebaseAuth.instance.currentUser!.uid);
       return _userFromFirebase(user);
     } catch(exception){
       print(exception.toString());
@@ -53,6 +67,7 @@ class AuthService {
     }
 
   }
+
 
 
 }
