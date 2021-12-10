@@ -110,7 +110,7 @@ class AuthScreenState extends State<AuthScreen> {
                     if(result == null){
                       setState((){
                         loading = false;
-                        textErr = "Entrez un email valide";
+                        textErr = "Entrez un email ou mot de passe valide";
                       });
 
                     }

@@ -16,14 +16,12 @@ class AuthService {
   }
 
   Future Connexion(String email, String password) async {
-    try{
-      UserCredential result =
-        await _auth.signInWithEmailAndPassword(email: email, password: password);
-      User user = result.user;
-      return _userFromFirebase(user);
-    } catch(exception){
-      print(exception.toString());
-      return null;
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return result.user;
+    } catch (e) {
+      print(e.toString());
     }
 
   }
@@ -35,19 +33,24 @@ class AuthService {
       User user = result.user;
 
 
-      FirebaseFirestore.instance.collection('guestbook').add({
+
+      await FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).set({
         'text': "C EST UN TEST DEPUIS INSCRIPTION",
         'email': email,
         'password': password,
-        'timestamp': DateTime.now().millisecondsSinceEpoch,
-        'userId': FirebaseAuth.instance.currentUser!.uid,
-        'anniversaire':'',
+        'id': FirebaseAuth.instance.currentUser!.uid,
+        'birthday':'',
         'addresse':'',
         'codepostal':'',
         'ville':'',
 
+
       });
+
+
+
       print("hello c est auth ici");
+
       print(FirebaseAuth.instance.currentUser!.uid);
       return _userFromFirebase(user);
     } catch(exception){

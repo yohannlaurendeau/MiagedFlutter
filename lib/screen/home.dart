@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:miagedflutter/common/loading.dart';
 import 'package:miagedflutter/screen/acheter.dart';
 import 'package:miagedflutter/screen/panier.dart';
 
@@ -14,6 +17,7 @@ class HomeScreen extends StatelessWidget {
 
 
   Widget build(BuildContext context) {
+
     return Scaffold(
 
 
@@ -40,7 +44,7 @@ class MyBottomNavigationBar extends StatefulWidget {
 }
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
-
+  bool loading = false;
   int _currentIndex = 0;
   final List<Widget> _children =[
     AcheterScreen(),
@@ -52,27 +56,29 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   void _onTappedBar(int index) {
     setState(() {
       _currentIndex = index;
+
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return loading ? Loading() :
+    new Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
 
         items:[
           BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            title: new Text("Acheter")
+            icon: new Icon(Icons.add_shopping_cart,color: Colors.red,),
+            title: new Text("Magasin",style: TextStyle(color: Colors.red),)
           ),
           BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text("Panier")
+              icon: new Icon(Icons.shopping_basket,color: Colors.green, ),
+              title: new Text("Panier",style: TextStyle(color: Colors.green))
           ),
           BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text("Profil")
+              icon: new Icon(Icons.person,color:Colors.lightBlueAccent,),
+              title: new Text("Profil",style: TextStyle(color: Colors.lightBlueAccent))
           ),
         ],
         onTap: _onTappedBar,

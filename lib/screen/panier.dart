@@ -14,7 +14,7 @@ class _PanierScreenState extends State<PanierScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.lightGreenAccent,
         title: Text('PANIER'),
         actions: <Widget>[
           TextButton.icon(
