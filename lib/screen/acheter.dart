@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:miagedflutter/bd/BdManager.dart';
-import 'package:miagedflutter/models/product.dart';
+
 import 'package:miagedflutter/screen/details.dart';
 import 'package:miagedflutter/screen/panier.dart';
 import 'package:miagedflutter/services/auth.dart';
