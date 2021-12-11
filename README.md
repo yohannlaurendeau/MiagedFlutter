@@ -8,6 +8,10 @@ Run by using the command "flutter run --no-sound-null-safety" in the "MiagedFlut
 
 Run -> Edit Configurations -> ADD "--no-sound-null-safety" in Additional run args
 
+To use the application either create your own Account or use a Test account with mail : saltyjokaient@gmail.com and password : taiwan75
+
+Have a good Time
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
