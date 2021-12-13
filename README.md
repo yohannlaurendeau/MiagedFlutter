@@ -1,6 +1,6 @@
 # miagedflutter
 
-A new Flutter project.
+Projet avec tous les MVP sauf le panier avec en supplément l'inscription donc la création de compte 
 
 # How to run it
 
